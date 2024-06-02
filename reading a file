@@ -1,0 +1,44 @@
+def file_read(fname = 'example.txt'):
+        txt = open(fname)
+        print(txt.read())
+
+file_read('example.txt')
+
+def read_first_n_lines(fname ='example.txt', n=5):
+    with open(fname, 'r') as file:
+        for i in range(n):
+            line = file.readline()
+            if not line:
+                break
+            print(line, end='')
+
+
+
+def read_last_n_lines(fname = 'example.txt', n=5):
+    with open(fname, 'r') as file:
+        lines = file.readlines()
+    for line in lines[-n:]:
+        print(line, end='')
+
+fname = 'example.txt'
+n = 5
+read_last_n_lines(fname, n)
+
+def count_words_in_file(fname = 'example.txt'):
+    with open(fname, 'r') as file:
+        content = file.read()
+    words = content.split()
+    return len(words)
+
+fname = 'example.txt'
+num_words = count_words_in_file(fname)
+print(f'Number of words: {num_words}')
+
+from collections import deque
+
+def read_last_n_lines_alternative(fname = 'example.txt', n=5):
+    with open(fname, 'r') as file:
+        last_lines = deque(file, maxlen=n)
+    for line in last_lines:
+        print(line, end='')
+
